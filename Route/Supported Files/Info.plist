@@ -20,6 +20,10 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>MGLMapboxAccessToken</key>
+	<string>sk.eyJ1IjoibnVndW1hbm92ZCIsImEiOiJja2lodGdwZW8wczY5MnBtcWwxcTQxczhiIn0.ILTTTkND8LXg9R9p_5XRgA</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Please get your location for building route</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
