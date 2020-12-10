@@ -14,12 +14,14 @@ import MapboxDirections
 class RoutingViewModel {
     
     private var pointsStack: [Waypoint] = [Waypoint]()
+    private let routingModel: RoutingModel
     
     var navigationMapViewDelegate: NavigationMapViewDelegate?
     var shouldDisplayRoute: (() -> Void)?
     var shouldRemoveRoute: (() -> Void)?
     
-    init() {
+    init(model: RoutingModel) {
+        self.routingModel = model
         navigationMapViewDelegate = NavigationMapViewDelegateImpl()
         deletePoint()
     }
@@ -27,6 +29,7 @@ class RoutingViewModel {
     func addPointToRoute(withDestination destination: CLLocationCoordinate2D) {
         if pointsStack.count <= 10 {
             pointsStack.append(Waypoint(coordinate: destination, coordinateAccuracy: -1, name: "Finish"))
+            routingModel.addPoint()
         } else {
             // TODO: - показать алерт
         }
@@ -42,10 +45,14 @@ class RoutingViewModel {
     }
     
     func getPointStack() -> [Waypoint] {
+        routingModel.getAllPoints()
         return pointsStack
     }
-    
-    func deletePoint() {
+}
+
+// MARK: - Private Extension RoutingViewModel
+private extension RoutingViewModel {
+    private func deletePoint() {
         navigationMapViewDelegate?.didSelectToAnnotation = { [weak self] _, _ in
             if let lastIndex = self?.pointsStack.lastIndex(where: { $0 == self?.pointsStack.last }) {
                 if lastIndex > 1 {
@@ -55,6 +62,7 @@ class RoutingViewModel {
                     self?.pointsStack.removeAll()
                     self?.shouldRemoveRoute?()
                 }
+                self?.routingModel.deletePoint()
             }
         }
     }

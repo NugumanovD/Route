@@ -1,5 +1,5 @@
 //
-//  DatabaseManger.swift
+//  RoutingModel.swift
 //  Route
 //
 //  Created by Nugumanov Dmitriy on 10.12.2020.
@@ -7,14 +7,15 @@
 
 import Foundation
 
-protocol LocalStorable {
-    func getAllPoints()
-    func addPoint()
-    func deletePoint()
-    func removeAllPoints()
-}
-
-class DatabaseManger: LocalStorable {
+class RoutingModel {
+    
+    private let localStorage: LocalStorable
+    
+    // MARK: - Init
+    init(localStorage: LocalStorable) {
+        self.localStorage = localStorage
+    }
+    
     func getAllPoints() {
         
     }
