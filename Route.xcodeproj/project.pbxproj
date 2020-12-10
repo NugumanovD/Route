@@ -7,27 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A68B306125827A39004CC6B0 /* NavigationMapDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68B306025827A39004CC6B0 /* NavigationMapDelegate.swift */; };
 		A6D1359025819F7C0036C241 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D1358F25819F7C0036C241 /* AppDelegate.swift */; };
 		A6D1359225819F7C0036C241 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D1359125819F7C0036C241 /* SceneDelegate.swift */; };
 		A6D1359425819F7C0036C241 /* RoutingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D1359325819F7C0036C241 /* RoutingViewController.swift */; };
-		A6D1359725819F7C0036C241 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6D1359525819F7C0036C241 /* Main.storyboard */; };
+		A6D1359725819F7C0036C241 /* Routing.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6D1359525819F7C0036C241 /* Routing.storyboard */; };
 		A6D1359925819F7E0036C241 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6D1359825819F7E0036C241 /* Assets.xcassets */; };
 		A6D1359C25819F7E0036C241 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6D1359A25819F7E0036C241 /* LaunchScreen.storyboard */; };
 		A6D135AE2581A2A10036C241 /* DatabaseManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D135AD2581A2A10036C241 /* DatabaseManger.swift */; };
+		A6D135F025826FDE0036C241 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D135EF25826FDE0036C241 /* MainCoordinator.swift */; };
+		A6D135F6258271750036C241 /* RoutingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D135F5258271750036C241 /* RoutingViewModel.swift */; };
 		D6AF1E98FCC55319E00C7B6D /* Pods_Route.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A78D5DCD795A2958B39EA3EA /* Pods_Route.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4E407F41792EF242DCA069EE /* Pods-Route.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Route.debug.xcconfig"; path = "Target Support Files/Pods-Route/Pods-Route.debug.xcconfig"; sourceTree = "<group>"; };
+		A68B306025827A39004CC6B0 /* NavigationMapDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationMapDelegate.swift; sourceTree = "<group>"; };
 		A6D1358C25819F7C0036C241 /* Route.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Route.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6D1358F25819F7C0036C241 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A6D1359125819F7C0036C241 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		A6D1359325819F7C0036C241 /* RoutingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutingViewController.swift; sourceTree = "<group>"; };
-		A6D1359625819F7C0036C241 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A6D1359625819F7C0036C241 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Routing.storyboard; sourceTree = "<group>"; };
 		A6D1359825819F7E0036C241 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A6D1359B25819F7E0036C241 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A6D1359D25819F7E0036C241 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A6D135AD2581A2A10036C241 /* DatabaseManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManger.swift; sourceTree = "<group>"; };
+		A6D135EF25826FDE0036C241 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
+		A6D135F5258271750036C241 /* RoutingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutingViewModel.swift; sourceTree = "<group>"; };
 		A78D5DCD795A2958B39EA3EA /* Pods_Route.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Route.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4EFBD1FB633CCB6566EE2A6 /* Pods-Route.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Route.release.xcconfig"; path = "Target Support Files/Pods-Route/Pods-Route.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -76,10 +82,8 @@
 		A6D135A72581A1DE0036C241 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				A6D1358F25819F7C0036C241 /* AppDelegate.swift */,
-				A6D1359125819F7C0036C241 /* SceneDelegate.swift */,
-				A6D1359525819F7C0036C241 /* Main.storyboard */,
-				A6D1359325819F7C0036C241 /* RoutingViewController.swift */,
+				A6D135F2258270470036C241 /* Global */,
+				A6D135F32582705E0036C241 /* RoutingFlow */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -107,6 +111,27 @@
 				A6D135AD2581A2A10036C241 /* DatabaseManger.swift */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		A6D135F2258270470036C241 /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				A6D135EF25826FDE0036C241 /* MainCoordinator.swift */,
+				A6D1358F25819F7C0036C241 /* AppDelegate.swift */,
+				A6D1359125819F7C0036C241 /* SceneDelegate.swift */,
+			);
+			path = Global;
+			sourceTree = "<group>";
+		};
+		A6D135F32582705E0036C241 /* RoutingFlow */ = {
+			isa = PBXGroup;
+			children = (
+				A6D1359525819F7C0036C241 /* Routing.storyboard */,
+				A6D1359325819F7C0036C241 /* RoutingViewController.swift */,
+				A6D135F5258271750036C241 /* RoutingViewModel.swift */,
+				A68B306025827A39004CC6B0 /* NavigationMapDelegate.swift */,
+			);
+			path = RoutingFlow;
 			sourceTree = "<group>";
 		};
 		D2D66157D14A4B7AFDB383EA /* Pods */ = {
@@ -187,7 +212,7 @@
 			files = (
 				A6D1359C25819F7E0036C241 /* LaunchScreen.storyboard in Resources */,
 				A6D1359925819F7E0036C241 /* Assets.xcassets in Resources */,
-				A6D1359725819F7C0036C241 /* Main.storyboard in Resources */,
+				A6D1359725819F7C0036C241 /* Routing.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,9 +265,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A68B306125827A39004CC6B0 /* NavigationMapDelegate.swift in Sources */,
 				A6D1359425819F7C0036C241 /* RoutingViewController.swift in Sources */,
+				A6D135F6258271750036C241 /* RoutingViewModel.swift in Sources */,
 				A6D1359025819F7C0036C241 /* AppDelegate.swift in Sources */,
 				A6D135AE2581A2A10036C241 /* DatabaseManger.swift in Sources */,
+				A6D135F025826FDE0036C241 /* MainCoordinator.swift in Sources */,
 				A6D1359225819F7C0036C241 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -250,12 +278,12 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		A6D1359525819F7C0036C241 /* Main.storyboard */ = {
+		A6D1359525819F7C0036C241 /* Routing.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				A6D1359625819F7C0036C241 /* Base */,
 			);
-			name = Main.storyboard;
+			name = Routing.storyboard;
 			sourceTree = "<group>";
 		};
 		A6D1359A25819F7E0036C241 /* LaunchScreen.storyboard */ = {

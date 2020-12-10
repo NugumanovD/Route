@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Routing View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController storyboardIdentifier="RoutingViewController" id="BYZ-38-t0r" customClass="RoutingViewController" customModule="Route" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MK8-Na-QzP" customClass="NavigationMapView" customModule="MapboxNavigation">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yrD-m6-WRg">
+                                        <rect key="frame" x="107" y="816" width="200" height="40"/>
+                                        <color key="backgroundColor" red="0.92941176469999998" green="0.18823529410000001" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="Idu-hg-QYB"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="didTapNavigate:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fGc-AC-lfz"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="yrD-m6-WRg" secondAttribute="bottom" constant="40" id="UKf-r8-CKJ"/>
+                                    <constraint firstItem="yrD-m6-WRg" firstAttribute="width" secondItem="MK8-Na-QzP" secondAttribute="width" multiplier="0.483092" id="w4i-TS-5Dl"/>
+                                    <constraint firstItem="yrD-m6-WRg" firstAttribute="centerX" secondItem="MK8-Na-QzP" secondAttribute="centerX" id="xXw-iP-NIN"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="MK8-Na-QzP" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="A2K-2j-lVZ"/>
+                            <constraint firstItem="MK8-Na-QzP" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="LOr-Bf-OfH"/>
+                            <constraint firstItem="MK8-Na-QzP" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="LRY-de-0K6"/>
+                            <constraint firstAttribute="bottom" secondItem="MK8-Na-QzP" secondAttribute="bottom" id="hS0-cl-kIN"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="navigateBottomConstraint" destination="UKf-r8-CKJ" id="urF-ZJ-Ock"/>
+                        <outlet property="navigateButton" destination="yrD-m6-WRg" id="Gpo-fW-lfJ"/>
+                        <outlet property="navigationMapView" destination="MK8-Na-QzP" id="46M-75-3vy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="137.94642857142856"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
