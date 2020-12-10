@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import MapboxDirections
 
 class RoutingModel {
     
@@ -16,19 +17,20 @@ class RoutingModel {
         self.localStorage = localStorage
     }
     
-    func getAllPoints() {
-        
+    func getAllPoints() -> [Waypoint] {
+        let waypoints = localStorage.getAllPoints().map({ $0.convertTo() })
+        return waypoints
     }
     
-    func addPoint() {
-        
+    func addPoint(withItem item: Waypoint) {
+        localStorage.addPoint(withItem: item)
     }
     
-    func deletePoint() {
-        
+    func deleteLastPoint() {
+        localStorage.deleteLastPoint()
     }
     
     func removeAllPoints() {
-        
+        localStorage.removeAllPoints()
     }
 }

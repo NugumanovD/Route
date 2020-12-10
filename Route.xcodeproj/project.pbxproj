@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		A68B306125827A39004CC6B0 /* NavigationMapDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68B306025827A39004CC6B0 /* NavigationMapDelegate.swift */; };
 		A68B30642582B09B004CC6B0 /* RoutingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68B30632582B09B004CC6B0 /* RoutingModel.swift */; };
+		A68B30782582E516004CC6B0 /* WaypointModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68B30772582E516004CC6B0 /* WaypointModel.swift */; };
+		A68B307C2582E548004CC6B0 /* PointEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68B307B2582E548004CC6B0 /* PointEntity.swift */; };
 		A6D1359025819F7C0036C241 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D1358F25819F7C0036C241 /* AppDelegate.swift */; };
 		A6D1359225819F7C0036C241 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D1359125819F7C0036C241 /* SceneDelegate.swift */; };
 		A6D1359425819F7C0036C241 /* RoutingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D1359325819F7C0036C241 /* RoutingViewController.swift */; };
@@ -25,6 +27,8 @@
 		4E407F41792EF242DCA069EE /* Pods-Route.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Route.debug.xcconfig"; path = "Target Support Files/Pods-Route/Pods-Route.debug.xcconfig"; sourceTree = "<group>"; };
 		A68B306025827A39004CC6B0 /* NavigationMapDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationMapDelegate.swift; sourceTree = "<group>"; };
 		A68B30632582B09B004CC6B0 /* RoutingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutingModel.swift; sourceTree = "<group>"; };
+		A68B30772582E516004CC6B0 /* WaypointModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaypointModel.swift; sourceTree = "<group>"; };
+		A68B307B2582E548004CC6B0 /* PointEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointEntity.swift; sourceTree = "<group>"; };
 		A6D1358C25819F7C0036C241 /* Route.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Route.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6D1358F25819F7C0036C241 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A6D1359125819F7C0036C241 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -52,6 +56,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A68B30762582E502004CC6B0 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				A68B30772582E516004CC6B0 /* WaypointModel.swift */,
+				A68B307B2582E548004CC6B0 /* PointEntity.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
 		A6D1358325819F7C0036C241 = {
 			isa = PBXGroup;
 			children = (
@@ -102,6 +115,7 @@
 		A6D135AA2581A2170036C241 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				A68B30762582E502004CC6B0 /* Entity */,
 				A6D135AB2581A2200036C241 /* Managers */,
 			);
 			path = Resource;
@@ -274,8 +288,10 @@
 				A6D1359025819F7C0036C241 /* AppDelegate.swift in Sources */,
 				A6D135AE2581A2A10036C241 /* DatabaseManger.swift in Sources */,
 				A6D135F025826FDE0036C241 /* MainCoordinator.swift in Sources */,
+				A68B30782582E516004CC6B0 /* WaypointModel.swift in Sources */,
 				A68B30642582B09B004CC6B0 /* RoutingModel.swift in Sources */,
 				A6D1359225819F7C0036C241 /* SceneDelegate.swift in Sources */,
+				A68B307C2582E548004CC6B0 /* PointEntity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -32,7 +32,7 @@ class RoutingViewController: UIViewController {
         setupBindings()
     }
     
-    static func makeMemeDetailVC(viewModel: RoutingViewModel) -> UIViewController {
+    static func makeRoutingViewController(viewModel: RoutingViewModel) -> UIViewController {
         guard let routingViewController = UIStoryboard(name: "Routing", bundle: nil).instantiateViewController(withIdentifier: "RoutingViewController") as? RoutingViewController else { return UIViewController() }
         routingViewController.routingViewModel = viewModel
         return routingViewController
@@ -46,6 +46,20 @@ class RoutingViewController: UIViewController {
         
         let longPress = UILongPressGestureRecognizer(target: self, action: #selector(didLongPress(_ :)))
         navigationMapView.addGestureRecognizer(longPress)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            self.routingViewModel?.loadPointsWithDataBase(userLocation: self.navigationMapView?.userLocation?.coordinate)
+        }
+    }
+    
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        switch motion {
+        case .motionShake:
+            routingViewModel?.removeAllPoints()
+            removeRoute()
+        default:
+            break
+        }
     }
     
     private func configureNagiteButton() {
@@ -70,9 +84,7 @@ class RoutingViewController: UIViewController {
         let coordinate = navigationMapView.convert(point, toCoordinateFrom: navigationMapView)
         
         if let origin = navigationMapView.userLocation?.coordinate {
-            routingViewModel?.addPointToRoute(withDestination: coordinate)
-            routingViewModel?.calculateRoute(from: origin)
-//            displayRoute()
+            routingViewModel?.addPointToRoute(withDestination: coordinate, from: origin)
         } else {
             print("Failed to get user location, make sure to allow location access for this application.")
         }

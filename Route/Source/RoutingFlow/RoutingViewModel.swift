@@ -23,47 +23,64 @@ class RoutingViewModel {
     init(model: RoutingModel) {
         self.routingModel = model
         navigationMapViewDelegate = NavigationMapViewDelegateImpl()
-        deletePoint()
+        setupBindigs()
     }
     
-    func addPointToRoute(withDestination destination: CLLocationCoordinate2D) {
+    func loadPointsWithDataBase(userLocation: CLLocationCoordinate2D?) {
+        guard let userLocation = userLocation else { return }
+        if !routingModel.getAllPoints().isEmpty {
+            pointsStack = routingModel.getAllPoints()
+            let userLocation = Waypoint(coordinate: userLocation, coordinateAccuracy: -1, name: "Start")
+            pointsStack.insert(userLocation, at: 0)
+            shouldDisplayRoute?()
+        }
+    }
+    
+    func addPointToRoute(withDestination destination: CLLocationCoordinate2D, from origin: CLLocationCoordinate2D) {
+        
         if pointsStack.count <= 10 {
-            pointsStack.append(Waypoint(coordinate: destination, coordinateAccuracy: -1, name: "Finish"))
-            routingModel.addPoint()
+            let waypoint = Waypoint(coordinate: destination, coordinateAccuracy: -1, name: "Finish")
+            pointsStack.append(waypoint)
+            routingModel.addPoint(withItem: waypoint)
+            
+            if !pointsStack.contains(where: { $0.name == "Start"}) && pointsStack.count == 1 {
+                let origin = Waypoint(coordinate: origin, coordinateAccuracy: -1, name: "Start")
+                pointsStack.insert(origin, at: 0)
+            }
+            shouldDisplayRoute?()
         } else {
             // TODO: - показать алерт
         }
-        print(pointsStack.count)
-    }
-    
-    func calculateRoute(from origin: CLLocationCoordinate2D) {
-        let origin = Waypoint(coordinate: origin, coordinateAccuracy: -1, name: "Start")
-        if pointsStack.count == 1 {
-            pointsStack.insert(origin, at: 0)
-        }
-        shouldDisplayRoute?()
     }
     
     func getPointStack() -> [Waypoint] {
-        routingModel.getAllPoints()
         return pointsStack
+    }
+    
+    func removeAllPoints() {
+        routingModel.removeAllPoints()
+        pointsStack.removeAll()
     }
 }
 
 // MARK: - Private Extension RoutingViewModel
 private extension RoutingViewModel {
-    private func deletePoint() {
-        navigationMapViewDelegate?.didSelectToAnnotation = { [weak self] _, _ in
-            if let lastIndex = self?.pointsStack.lastIndex(where: { $0 == self?.pointsStack.last }) {
-                if lastIndex > 1 {
-                    self?.pointsStack.remove(at: lastIndex)
-                    self?.shouldDisplayRoute?()
-                } else {
-                    self?.pointsStack.removeAll()
-                    self?.shouldRemoveRoute?()
-                }
-                self?.routingModel.deletePoint()
+    private func deletePoints() {
+        if let lastIndex = pointsStack.lastIndex(where: { $0 == pointsStack.last }) {
+            if lastIndex > 1 {
+                pointsStack.remove(at: lastIndex)
+                shouldDisplayRoute?()
+            } else {
+                pointsStack.removeAll()
+                shouldRemoveRoute?()
             }
+            routingModel.deleteLastPoint()
+        }
+    }
+    
+    private func setupBindigs() {
+        navigationMapViewDelegate?.didSelectToAnnotation = { [weak self] _, _ in
+            self?.deletePoints()
         }
     }
 }

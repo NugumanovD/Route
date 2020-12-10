@@ -24,7 +24,8 @@ class MainCoordinator: Coordinator {
     }
     
     private func showRoutingFlow() {
-        let routingViewController = RoutingViewController.makeMemeDetailVC(viewModel: RoutingViewModel())
+        let routingModel = RoutingModel(localStorage: DatabaseManger())
+        let routingViewController = RoutingViewController.makeRoutingViewController(viewModel: RoutingViewModel(model: routingModel))
         
         self.window?.rootViewController = routingViewController
         self.window?.makeKeyAndVisible()

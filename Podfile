@@ -5,7 +5,10 @@ target 'Route' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for Route
+  # Pods for MapBox
   pod 'Mapbox-iOS-SDK', '~> 6.3.0'
   pod 'MapboxNavigation', '~> 1.0.0'
+  
+  # Pods for Database
+  pod 'RealmSwift', '~> 10.1.3'
 end
