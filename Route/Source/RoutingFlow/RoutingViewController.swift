@@ -12,18 +12,23 @@ import MapboxNavigation
 import MapboxDirections
 
 class RoutingViewController: UIViewController {
-
+    
+    //MARK: - IBOutlets
+    
     @IBOutlet weak var navigationMapView: NavigationMapView!
     @IBOutlet weak var navigateButton: UIButton!
     @IBOutlet weak var deleteRouteButton: UIButton!
     @IBOutlet weak var navigateRightConstraint: NSLayoutConstraint!
     @IBOutlet weak var deleteRouteRightConstraint: NSLayoutConstraint!
     
+    //MARK: - Private properties
+    
     private var routeOptions: NavigationRouteOptions?
     private var route: Route?
-    
     private var routingViewModel: RoutingViewModel?
     private var navigationMapViewDelegate: NavigationMapViewDelegate?
+    
+    //MARK: - Lifecycle methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,29 +40,18 @@ class RoutingViewController: UIViewController {
     }
     
     static func makeRoutingViewController(viewModel: RoutingViewModel) -> UIViewController {
-        guard let routingViewController = UIStoryboard(name: "Routing", bundle: nil).instantiateViewController(withIdentifier: "RoutingViewController") as? RoutingViewController else { return UIViewController() }
+        guard let routingViewController = UIStoryboard(name: Constant.StoryboardName.routing, bundle: nil)
+                .instantiateViewController(withIdentifier: Constant.ViewControllerIdentifier.routingVC) as? RoutingViewController else {
+            return UIViewController()
+        }
         routingViewController.routingViewModel = viewModel
         return routingViewController
-    }
-    
-    private func configureNavigationMapView() {
-        navigationMapView.delegate = navigationMapViewDelegate
-        
-        navigationMapView.showsUserLocation = true
-        navigationMapView.setUserTrackingMode(.follow, animated: true, completionHandler: nil)
-        
-        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(didLongPress(_ :)))
-        navigationMapView.addGestureRecognizer(longPress)
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-            self.routingViewModel?.loadPointsWithDataBase(userLocation: self.navigationMapView?.userLocation?.coordinate)
-        }
     }
     
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         switch motion {
         case .motionShake:
-            showAlert {
+            showAlert(withMessage: "Что хотите удалить весь маршрут?") {
                 self.routingViewModel?.removeAllPoints()
                 self.removeRoute()
             }
@@ -66,8 +60,10 @@ class RoutingViewController: UIViewController {
         }
     }
     
+    //MARK: - IBAction funcs
+    
     @IBAction func didTapDeleteRoute(_ sender: UIButton) {
-        showAlert {
+        showAlert(withMessage: "Что хотите удалить весь маршрут?\n\n Если потрясти устройство так же можно удалить маршрут") {
             self.routingViewModel?.removeAllPoints()
             self.removeRoute()
         }
@@ -85,6 +81,19 @@ class RoutingViewController: UIViewController {
 
 // MARK: - Private Extension RoutingViewController
 private extension RoutingViewController {
+    
+    func configureNavigationMapView() {
+        navigationMapView.delegate = navigationMapViewDelegate
+        navigationMapView.showsUserLocation = true
+        navigationMapView.setUserTrackingMode(.follow, animated: true, completionHandler: nil)
+        
+        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(didLongPress(_ :)))
+        navigationMapView.addGestureRecognizer(longPress)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            self.routingViewModel?.loadPointsWithDataBase(userLocation: self.navigationMapView?.userLocation?.coordinate)
+        }
+    }
     
     func configureNagiteButton() {
         deleteRouteButton.layer.cornerRadius = deleteRouteButton.frame.width / 2
@@ -116,7 +125,7 @@ private extension RoutingViewController {
             self?.removeRoute()
         }
     }
-
+    
     func displayRoute() {
         guard let pointStack = routingViewModel?.getPointStack() else { return }
         let routeOptions = NavigationRouteOptions(waypoints: pointStack)
@@ -145,7 +154,7 @@ private extension RoutingViewController {
     }
     
     func removeRoute() {
-        guard let style = self.navigationMapView.style?.layer(withIdentifier: "route-style") else { return }
+        guard let style = self.navigationMapView.style?.layer(withIdentifier: Constant.MapViewStyle.layerId) else { return }
         self.navigationMapView.style?.removeLayer(style)
         self.navigationMapView.style?.sources.removeAll()
         self.navigationMapView.removeWaypoints()
@@ -194,12 +203,12 @@ private extension RoutingViewController {
         var routeCoordinates = routeShape.coordinates
         let polyline = MGLPolylineFeature(coordinates: &routeCoordinates, count: UInt(routeCoordinates.count))
         
-        if let source = navigationMapView.style?.source(withIdentifier: "route-source") as? MGLShapeSource {
+        if let source = navigationMapView.style?.source(withIdentifier: Constant.MapViewStyle.sourceId) as? MGLShapeSource {
             source.shape = polyline
         } else {
-            let source = MGLShapeSource(identifier: "route-source", features: [polyline], options: nil)
+            let source = MGLShapeSource(identifier: Constant.MapViewStyle.sourceId, features: [polyline], options: nil)
             
-            let lineStyle = MGLLineStyleLayer(identifier: "route-style", source: source)
+            let lineStyle = MGLLineStyleLayer(identifier: Constant.MapViewStyle.layerId, source: source)
             lineStyle.lineColor = NSExpression(forConstantValue: #colorLiteral(red: 0.1897518039, green: 0.3010634184, blue: 0.7994888425, alpha: 1))
             lineStyle.lineWidth = NSExpression(forConstantValue: 3)
             
@@ -208,8 +217,8 @@ private extension RoutingViewController {
         }
     }
     
-    func showAlert(complation: @escaping () -> Void) {
-        let alert = UIAlertController(title: "Вы уверены", message: "Что хотите удалить весь маршрут?", preferredStyle: .alert)
+    func showAlert(withMessage message: String, complation: @escaping () -> Void) {
+        let alert = UIAlertController(title: "Вы уверены", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
             complation()
         }))

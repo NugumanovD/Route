@@ -12,10 +12,13 @@ class RoutingModel {
     
     private let localStorage: LocalStorable
     
-    // MARK: - Init
+    //MARK: - Init & dealloc methods
+    
     init(localStorage: LocalStorable) {
         self.localStorage = localStorage
     }
+    
+    //MARK: - Class functions
     
     func getAllPoints() -> [Waypoint] {
         let waypoints = localStorage.getAllPoints().map({ $0.convertTo() })

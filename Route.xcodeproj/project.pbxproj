@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A630AFC62583AC7100B9CCAE /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = A630AFC52583AC7100B9CCAE /* Constant.swift */; };
 		A68B306125827A39004CC6B0 /* NavigationMapDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68B306025827A39004CC6B0 /* NavigationMapDelegate.swift */; };
 		A68B30642582B09B004CC6B0 /* RoutingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68B30632582B09B004CC6B0 /* RoutingModel.swift */; };
 		A68B30782582E516004CC6B0 /* WaypointModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68B30772582E516004CC6B0 /* WaypointModel.swift */; };
@@ -25,6 +26,7 @@
 
 /* Begin PBXFileReference section */
 		4E407F41792EF242DCA069EE /* Pods-Route.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Route.debug.xcconfig"; path = "Target Support Files/Pods-Route/Pods-Route.debug.xcconfig"; sourceTree = "<group>"; };
+		A630AFC52583AC7100B9CCAE /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		A68B306025827A39004CC6B0 /* NavigationMapDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationMapDelegate.swift; sourceTree = "<group>"; };
 		A68B30632582B09B004CC6B0 /* RoutingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutingModel.swift; sourceTree = "<group>"; };
 		A68B30772582E516004CC6B0 /* WaypointModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaypointModel.swift; sourceTree = "<group>"; };
@@ -56,6 +58,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A630AFC42583AC5400B9CCAE /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				A630AFC52583AC7100B9CCAE /* Constant.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
 		A68B30762582E502004CC6B0 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
@@ -115,6 +125,7 @@
 		A6D135AA2581A2170036C241 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				A630AFC42583AC5400B9CCAE /* Constants */,
 				A68B30762582E502004CC6B0 /* Entity */,
 				A6D135AB2581A2200036C241 /* Managers */,
 			);
@@ -290,6 +301,7 @@
 				A6D135F025826FDE0036C241 /* MainCoordinator.swift in Sources */,
 				A68B30782582E516004CC6B0 /* WaypointModel.swift in Sources */,
 				A68B30642582B09B004CC6B0 /* RoutingModel.swift in Sources */,
+				A630AFC62583AC7100B9CCAE /* Constant.swift in Sources */,
 				A6D1359225819F7C0036C241 /* SceneDelegate.swift in Sources */,
 				A68B307C2582E548004CC6B0 /* PointEntity.swift in Sources */,
 			);

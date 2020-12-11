@@ -13,12 +13,18 @@ import MapboxDirections
 
 class RoutingViewModel {
     
+    //MARK: - Private properties
+    
     private var pointsStack: [Waypoint] = [Waypoint]()
     private let routingModel: RoutingModel
+    
+    //MARK: - Class Properties
     
     var navigationMapViewDelegate: NavigationMapViewDelegate?
     var shouldDisplayRoute: (() -> Void)?
     var shouldRemoveRoute: (() -> Void)?
+    
+    //MARK: - Init & dealloc methods
     
     init(model: RoutingModel) {
         self.routingModel = model
@@ -48,8 +54,6 @@ class RoutingViewModel {
                 pointsStack.insert(origin, at: 0)
             }
             shouldDisplayRoute?()
-        } else {
-            // TODO: - показать алерт
         }
     }
     
@@ -64,6 +68,7 @@ class RoutingViewModel {
 }
 
 // MARK: - Private Extension RoutingViewModel
+
 private extension RoutingViewModel {
     private func deletePoints() {
         if let lastIndex = pointsStack.lastIndex(where: { $0 == pointsStack.last }) {
