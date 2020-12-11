@@ -20,23 +20,38 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MK8-Na-QzP" customClass="NavigationMapView" customModule="MapboxNavigation">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yrD-m6-WRg">
-                                        <rect key="frame" x="107" y="816" width="200" height="40"/>
-                                        <color key="backgroundColor" red="0.92941176469999998" green="0.18823529410000001" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yrD-m6-WRg">
+                                        <rect key="frame" x="339" y="776" width="50" height="50"/>
+                                        <color key="backgroundColor" red="0.21568012240000001" green="0.44140481949999999" blue="0.87455266710000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="Idu-hg-QYB"/>
+                                            <constraint firstAttribute="width" constant="50" id="J19-8m-01o"/>
+                                            <constraint firstAttribute="height" constant="50" id="gPQ-gO-GnF"/>
                                         </constraints>
-                                        <state key="normal" title="Button"/>
+                                        <state key="normal" image="navigationWhite"/>
                                         <connections>
                                             <action selector="didTapNavigate:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fGc-AC-lfz"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gvo-N1-ACZ">
+                                        <rect key="frame" x="339" y="716" width="50" height="50"/>
+                                        <color key="backgroundColor" systemColor="systemRedColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="O7d-7j-X9M"/>
+                                            <constraint firstAttribute="width" constant="50" id="i3N-ej-dmB"/>
+                                            <constraint firstAttribute="width" constant="50" id="wfa-Fq-K7L"/>
+                                        </constraints>
+                                        <state key="normal" image="deleteRouteWhite"/>
+                                        <connections>
+                                            <action selector="didTapDeleteRoute:" destination="BYZ-38-t0r" eventType="touchUpInside" id="COw-Gl-PQT"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="yrD-m6-WRg" secondAttribute="bottom" constant="40" id="UKf-r8-CKJ"/>
-                                    <constraint firstItem="yrD-m6-WRg" firstAttribute="width" secondItem="MK8-Na-QzP" secondAttribute="width" multiplier="0.483092" id="w4i-TS-5Dl"/>
-                                    <constraint firstItem="yrD-m6-WRg" firstAttribute="centerX" secondItem="MK8-Na-QzP" secondAttribute="centerX" id="xXw-iP-NIN"/>
+                                    <constraint firstAttribute="trailing" secondItem="yrD-m6-WRg" secondAttribute="trailing" constant="25" id="i6u-uc-n7z"/>
+                                    <constraint firstAttribute="bottom" secondItem="yrD-m6-WRg" secondAttribute="bottom" constant="70" id="i8y-9q-gvW"/>
+                                    <constraint firstAttribute="trailing" secondItem="Gvo-N1-ACZ" secondAttribute="trailing" constant="25" id="kud-y0-t9e"/>
+                                    <constraint firstItem="yrD-m6-WRg" firstAttribute="top" secondItem="Gvo-N1-ACZ" secondAttribute="bottom" constant="10" id="o4g-TB-11T"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -50,8 +65,10 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="navigateBottomConstraint" destination="UKf-r8-CKJ" id="urF-ZJ-Ock"/>
+                        <outlet property="deleteRouteButton" destination="Gvo-N1-ACZ" id="Zb7-KW-z6W"/>
+                        <outlet property="deleteRouteRightConstraint" destination="kud-y0-t9e" id="wHZ-HR-LYA"/>
                         <outlet property="navigateButton" destination="yrD-m6-WRg" id="Gpo-fW-lfJ"/>
+                        <outlet property="navigateRightConstraint" destination="i6u-uc-n7z" id="itQ-9Z-QkL"/>
                         <outlet property="navigationMapView" destination="MK8-Na-QzP" id="46M-75-3vy"/>
                     </connections>
                 </viewController>
@@ -61,8 +78,13 @@
         </scene>
     </scenes>
     <resources>
+        <image name="deleteRouteWhite" width="32" height="32"/>
+        <image name="navigationWhite" width="40" height="40"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

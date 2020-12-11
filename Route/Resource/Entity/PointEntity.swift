@@ -2,7 +2,7 @@
 //  PointEntity.swift
 //  Route
 //
-//  Created by Rush LLC on 11.12.2020.
+//  Created by Nugumanov Dmitriy on 11.12.2020.
 //
 
 import RealmSwift

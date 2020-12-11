@@ -15,7 +15,9 @@ class RoutingViewController: UIViewController {
 
     @IBOutlet weak var navigationMapView: NavigationMapView!
     @IBOutlet weak var navigateButton: UIButton!
-    @IBOutlet weak var navigateBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var deleteRouteButton: UIButton!
+    @IBOutlet weak var navigateRightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var deleteRouteRightConstraint: NSLayoutConstraint!
     
     private var routeOptions: NavigationRouteOptions?
     private var route: Route?
@@ -55,28 +57,43 @@ class RoutingViewController: UIViewController {
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         switch motion {
         case .motionShake:
-            routingViewModel?.removeAllPoints()
-            removeRoute()
+            showAlert {
+                self.routingViewModel?.removeAllPoints()
+                self.removeRoute()
+            }
         default:
             break
         }
     }
     
-    private func configureNagiteButton() {
-        navigateButton.layer.cornerRadius = 10
-        navigateButton.setTitle("Проложить маршрут", for: .normal)
-        navigateBottomConstraint.constant = -(navigateButton.frame.height * 2)
+    @IBAction func didTapDeleteRoute(_ sender: UIButton) {
+        showAlert {
+            self.routingViewModel?.removeAllPoints()
+            self.removeRoute()
+        }
     }
     
-    private func removeRoute() {
-        guard let style = self.navigationMapView.style?.layer(withIdentifier: "route-style") else { return }
-        self.navigationMapView.style?.removeLayer(style)
-        self.navigationMapView.style?.sources.removeAll()
-        self.navigationMapView.removeWaypoints()
-        
+    @IBAction func didTapNavigate(_ sender: UIButton) {
+        guard let route = route, let routeOptions = routeOptions else {
+            return
+        }
+        let navigationViewController = NavigationViewController(for: route, routeIndex: 1, routeOptions: routeOptions)
+        navigationViewController.modalPresentationStyle = .fullScreen
+        self.present(navigationViewController, animated: true, completion: nil)
+    }
+}
+
+// MARK: - Private Extension RoutingViewController
+private extension RoutingViewController {
+    
+    func configureNagiteButton() {
+        deleteRouteButton.layer.cornerRadius = deleteRouteButton.frame.width / 2
+        navigateButton.layer.cornerRadius = navigateButton.frame.width / 2
+        navigateRightConstraint.constant = -(navigateButton.frame.width)
+        deleteRouteRightConstraint.constant = -(deleteRouteButton.frame.width)
     }
     
-    @objc private func didLongPress(_ sender: UILongPressGestureRecognizer) {
+    @objc func didLongPress(_ sender: UILongPressGestureRecognizer) {
         guard sender.state == .began else { return }
         
         // Converts point where user did a long press to map coordinates
@@ -90,7 +107,7 @@ class RoutingViewController: UIViewController {
         }
     }
     
-    private func setupBindings() {
+    func setupBindings() {
         routingViewModel?.shouldDisplayRoute = { [weak self] in
             self?.displayRoute()
         }
@@ -100,7 +117,7 @@ class RoutingViewController: UIViewController {
         }
     }
 
-    private func displayRoute() {
+    func displayRoute() {
         guard let pointStack = routingViewModel?.getPointStack() else { return }
         let routeOptions = NavigationRouteOptions(waypoints: pointStack)
         routeOptions.profileIdentifier = .walking
@@ -112,7 +129,8 @@ class RoutingViewController: UIViewController {
                 guard let route = response.routes?.first, let strongSelf = self else {
                     return
                 }
-                
+                strongSelf.showNavigateButton()
+                strongSelf.showDeleteRouteButton()
                 strongSelf.route = route
                 strongSelf.routeOptions = routeOptions
                 strongSelf.drawRoute(route: route)
@@ -123,6 +141,51 @@ class RoutingViewController: UIViewController {
                     strongSelf.navigationMapView.selectAnnotation(annotation, animated: true, completionHandler: nil)
                 }
             }
+        }
+    }
+    
+    func removeRoute() {
+        guard let style = self.navigationMapView.style?.layer(withIdentifier: "route-style") else { return }
+        self.navigationMapView.style?.removeLayer(style)
+        self.navigationMapView.style?.sources.removeAll()
+        self.navigationMapView.removeWaypoints()
+        self.hideNavigateButton()
+        self.hideDeleteRouteButton()
+    }
+    
+    func showNavigateButton() {
+        navigateRightConstraint.constant = navigateButton.frame.width / 2
+        UIView.animate(withDuration: 0.33,
+                       delay: 0.2,
+                       usingSpringWithDamping: 0.5,
+                       initialSpringVelocity: 0,
+                       options: .curveEaseInOut) {
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    func showDeleteRouteButton() {
+        deleteRouteRightConstraint.constant = deleteRouteButton.frame.width / 2
+        UIView.animate(withDuration: 0.33,
+                       delay: 0.3,
+                       usingSpringWithDamping: 0.5,
+                       initialSpringVelocity: 0,
+                       options: .curveEaseInOut) {
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    func hideNavigateButton() {
+        navigateRightConstraint.constant = -(navigateButton.frame.width)
+        UIView.animate(withDuration: 0.33) {
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    func hideDeleteRouteButton() {
+        deleteRouteRightConstraint.constant = -(deleteRouteButton.frame.width)
+        UIView.animate(withDuration: 0.33, delay: 0.1) {
+            self.view.layoutIfNeeded()
         }
     }
     
@@ -145,10 +208,14 @@ class RoutingViewController: UIViewController {
         }
     }
     
-    @IBAction func didTapNavigate(_ sender: UIButton) {
-        navigateBottomConstraint.constant = -(navigateButton.frame.height * 2)
-        UIView.animate(withDuration: 0.33) {
-            self.view.layoutIfNeeded()
-        }
+    func showAlert(complation: @escaping () -> Void) {
+        let alert = UIAlertController(title: "Вы уверены", message: "Что хотите удалить весь маршрут?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+            complation()
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Отмена", style: .cancel))
+        
+        present(alert, animated: true)
     }
 }
