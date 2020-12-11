@@ -1,0 +1,18 @@
+/* 
+  Localizable.strings
+  Route
+
+  Created by Rush LLC on 11.12.2020.
+  
+*/
+
+// Map annotation
+"delete_point" = "Удалить точку";
+
+//Alert Controller
+
+"alert_title" = "Вы уверены";
+"alert_message" = "Что хотите удалить весь маршрут?";
+"alert_message_with_promt" = "Что хотите удалить весь маршрут?\n\n Если потрясти устройство, так же можно удалить маршрут";
+
+"alert_action_cancel" = "Отмена";
