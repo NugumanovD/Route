@@ -51,7 +51,7 @@ class RoutingViewController: UIViewController {
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         switch motion {
         case .motionShake:
-            showAlert(withMessage: "Что хотите удалить весь маршрут?") {
+            showAlert(withMessage: NSLocalizedString("alert_message", comment: "")) {
                 self.routingViewModel?.removeAllPoints()
                 self.removeRoute()
             }
@@ -63,7 +63,7 @@ class RoutingViewController: UIViewController {
     //MARK: - IBAction funcs
     
     @IBAction func didTapDeleteRoute(_ sender: UIButton) {
-        showAlert(withMessage: "Что хотите удалить весь маршрут?\n\n Если потрясти устройство так же можно удалить маршрут") {
+        showAlert(withMessage: NSLocalizedString("alert_message_with_promt", comment: "")) {
             self.routingViewModel?.removeAllPoints()
             self.removeRoute()
         }
@@ -146,7 +146,7 @@ private extension RoutingViewController {
                 strongSelf.navigationMapView.showWaypoints(on: route)
                 
                 if let annotation = strongSelf.navigationMapView.annotations?.first as? MGLPointAnnotation {
-                    annotation.title = "Delete Point"
+                    annotation.title = NSLocalizedString("delete_point", comment: "")
                     strongSelf.navigationMapView.selectAnnotation(annotation, animated: true, completionHandler: nil)
                 }
             }
@@ -218,12 +218,12 @@ private extension RoutingViewController {
     }
     
     func showAlert(withMessage message: String, complation: @escaping () -> Void) {
-        let alert = UIAlertController(title: "Вы уверены", message: message, preferredStyle: .alert)
+        let alert = UIAlertController(title: NSLocalizedString("alert_title", comment: ""), message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
             complation()
         }))
         
-        alert.addAction(UIAlertAction(title: "Отмена", style: .cancel))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("alert_action_cancel", comment: ""), style: .cancel))
         
         present(alert, animated: true)
     }
