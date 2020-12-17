@@ -1,0 +1,13 @@
+/* 
+  InfoPlist.strings
+  Route
+
+  Created by Nugumanov Dmitriy on 17.12.2020.
+  
+*/
+
+"CFBundleDisplayName" = "Машрут";
+
+"NSLocationWhenInUseUsageDescription" = "Ваше точное местоположение используется для вычисления направления поворота, отображения вашего местоположения на карте";
+"MGLAccuracyAuthorizationDescription" = "
+Пожалуйста, включите точное местоположение. Пошаговые инструкции работают только при наличии точных данных о местоположении.";

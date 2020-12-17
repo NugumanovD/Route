@@ -28,11 +28,11 @@
 		<string>Please enable precise location. Turn-by-turn directions only work when precise location data is available.</string>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Please get your location for building route</string>
+	<string>Your precise location is used to calculate turn-by-turn directions, show your location on the map, and help improve the map</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Please get your location for building route</string>
+	<string>Your precise location is used to calculate turn-by-turn directions, show your location on the map, and help improve the map</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Please get your location for building route</string>
+	<string>Your precise location is used to calculate turn-by-turn directions, show your location on the map, and help improve the map</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
