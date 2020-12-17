@@ -24,6 +24,8 @@ class RoutingViewModel {
     var shouldDisplayRoute: (() -> Void)?
     var shouldRemoveRoute: (() -> Void)?
     
+    var configureLocationAuthorization: ((LocationAuthorizationOptions) -> Void)?
+    
     //MARK: - Init & dealloc methods
     
     init(model: RoutingModel) {
@@ -93,21 +95,20 @@ private extension RoutingViewModel {
             self?.deletePoints()
         }
         
-        navigationMapViewDelegate?.didChangeLocationAuthorization = { manager in
-            
+        navigationMapViewDelegate?.didChangeLocationAuthorization = { [weak self] manager in
             switch manager.authorizationStatus {
             case .authorizedWhenInUse, .authorizedAlways:
-                print("authorizedWhenInUse")
+                self?.configureLocationAuthorization?(.authorization)
             case .denied:
-                print("denied")
-            case .notDetermined:
-                
-                print("ND: - GEO use is NEVER")
-            case .restricted:
-                print("restricted")
+                self?.configureLocationAuthorization?(.disabled)
             default:
                 break
             }
         }
     }
+}
+
+enum LocationAuthorizationOptions {
+    case authorization
+    case disabled
 }
