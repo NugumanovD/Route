@@ -89,10 +89,6 @@ private extension RoutingViewController {
         
         let longPress = UILongPressGestureRecognizer(target: self, action: #selector(didLongPress(_ :)))
         navigationMapView.addGestureRecognizer(longPress)
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-            self.routingViewModel?.loadPointsWithDataBase(userLocation: self.navigationMapView?.userLocation?.coordinate)
-        }
     }
     
     func configureNagiteButton() {
@@ -134,6 +130,8 @@ private extension RoutingViewController {
             switch result {
             case .failure(let error):
                 print(error.localizedDescription)
+                self?.routingViewModel?.removeAllPoints()
+                self?.removeRoute()
             case .success(let response):
                 guard let route = response.routes?.first, let strongSelf = self else {
                     return

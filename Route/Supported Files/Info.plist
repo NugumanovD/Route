@@ -22,7 +22,16 @@
 	<true/>
 	<key>MGLMapboxAccessToken</key>
 	<string>sk.eyJ1IjoibnVndW1hbm92ZCIsImEiOiJja2lodGdwZW8wczY5MnBtcWwxcTQxczhiIn0.ILTTTkND8LXg9R9p_5XRgA</string>
+	<key>NSLocationTemporaryUsageDescriptionDictionary</key>
+	<dict>
+		<key>MGLAccuracyAuthorizationDescription</key>
+		<string>Please enable precise location. Turn-by-turn directions only work when precise location data is available.</string>
+	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Please get your location for building route</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Please get your location for building route</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>Please get your location for building route</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>

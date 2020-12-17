@@ -70,7 +70,7 @@ class RoutingViewModel {
 // MARK: - Private Extension RoutingViewModel
 
 private extension RoutingViewModel {
-    private func deletePoints() {
+    func deletePoints() {
         if let lastIndex = pointsStack.lastIndex(where: { $0 == pointsStack.last }) {
             if lastIndex > 1 {
                 pointsStack.remove(at: lastIndex)
@@ -83,9 +83,31 @@ private extension RoutingViewModel {
         }
     }
     
-    private func setupBindigs() {
+    
+    func setupBindigs() {
+        navigationMapViewDelegate?.updateUserLocation = { [weak self] userLocation in
+            self?.loadPointsWithDataBase(userLocation: userLocation)
+        }
+        
         navigationMapViewDelegate?.didSelectToAnnotation = { [weak self] _, _ in
             self?.deletePoints()
+        }
+        
+        navigationMapViewDelegate?.didChangeLocationAuthorization = { manager in
+            
+            switch manager.authorizationStatus {
+            case .authorizedWhenInUse, .authorizedAlways:
+                print("authorizedWhenInUse")
+            case .denied:
+                print("denied")
+            case .notDetermined:
+                
+                print("ND: - GEO use is NEVER")
+            case .restricted:
+                print("restricted")
+            default:
+                break
+            }
         }
     }
 }
