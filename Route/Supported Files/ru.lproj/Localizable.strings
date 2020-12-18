@@ -2,17 +2,23 @@
   Localizable.strings
   Route
 
-  Created by Rush LLC on 11.12.2020.
+  Created by Nugumanov Dmitriy on 11.12.2020.
   
 */
 
 // Map annotation
 "delete_point" = "Удалить точку";
 
-//Alert Controller
+// Default Alert Controller
 
 "alert_title" = "Вы уверены";
 "alert_message" = "Что хотите удалить весь маршрут?";
 "alert_message_with_promt" = "Что хотите удалить весь маршрут?\n\n Если потрясти устройство, так же можно удалить маршрут";
-
 "alert_action_cancel" = "Отмена";
+
+// Settings Alert Controller
+
+"settings_alert_title" = "Внимание";
+"settings_alert_message" = "Включите определение местоположения в Route.\n 1. Выберите 'Геопозиция'\n 2. Выберите 'Всегда' или 'Используя'";
+"settings_alert_action" = "Настройки";
+"settings_alert_action_cancel" = "Отмена";

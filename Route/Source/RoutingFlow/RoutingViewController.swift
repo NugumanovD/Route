@@ -27,6 +27,7 @@ class RoutingViewController: UIViewController {
     private var route: Route?
     private var routingViewModel: RoutingViewModel?
     private var navigationMapViewDelegate: NavigationMapViewDelegate?
+    private var longPressGesture: UILongPressGestureRecognizer?
     
     //MARK: - Lifecycle methods
     
@@ -87,12 +88,8 @@ private extension RoutingViewController {
         navigationMapView.showsUserLocation = true
         navigationMapView.setUserTrackingMode(.follow, animated: true, completionHandler: nil)
         
-        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(didLongPress(_ :)))
-        navigationMapView.addGestureRecognizer(longPress)
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-            self.routingViewModel?.loadPointsWithDataBase(userLocation: self.navigationMapView?.userLocation?.coordinate)
-        }
+        longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(didLongPress(_ :)))
+        navigationMapView.addGestureRecognizer(longPressGesture!)
     }
     
     func configureNagiteButton() {
@@ -105,7 +102,6 @@ private extension RoutingViewController {
     @objc func didLongPress(_ sender: UILongPressGestureRecognizer) {
         guard sender.state == .began else { return }
         
-        // Converts point where user did a long press to map coordinates
         let point = sender.location(in: navigationMapView)
         let coordinate = navigationMapView.convert(point, toCoordinateFrom: navigationMapView)
         
@@ -124,6 +120,27 @@ private extension RoutingViewController {
         routingViewModel?.shouldRemoveRoute = { [weak self] in
             self?.removeRoute()
         }
+        
+        routingViewModel?.configureLocationAuthorization = { [weak self] options in
+            switch options {
+            case .authorization:
+                self?.showRouteAgain()
+            case .disabled:
+                self?.longPressGesture?.isEnabled = false
+                self?.removeRoute()
+                
+                self?.showSettingsAlert {
+                    self?.openSettings()
+                }
+            }
+        }
+    }
+    
+    func showRouteAgain() {
+        self.longPressGesture?.isEnabled = true
+        guard let route = self.route else { return }
+        self.navigationMapView.showWaypoints(on: route)
+        self.drawRoute(route: route)
     }
     
     func displayRoute() {
@@ -134,6 +151,8 @@ private extension RoutingViewController {
             switch result {
             case .failure(let error):
                 print(error.localizedDescription)
+                self?.routingViewModel?.removeAllPoints()
+                self?.removeRoute()
             case .success(let response):
                 guard let route = response.routes?.first, let strongSelf = self else {
                     return
@@ -218,13 +237,40 @@ private extension RoutingViewController {
     }
     
     func showAlert(withMessage message: String, complation: @escaping () -> Void) {
-        let alert = UIAlertController(title: NSLocalizedString("alert_title", comment: ""), message: message, preferredStyle: .alert)
+        let alert = UIAlertController(title: NSLocalizedString("alert_title", comment: ""),
+                                      message: message,
+                                      preferredStyle: .alert)
+        
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
             complation()
         }))
         
-        alert.addAction(UIAlertAction(title: NSLocalizedString("alert_action_cancel", comment: ""), style: .cancel))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("alert_action_cancel", comment: ""),
+                                      style: .cancel))
         
         present(alert, animated: true)
     }
+    
+    func showSettingsAlert(complation: @escaping () -> Void) {
+        let settingsAlert = UIAlertController(title: NSLocalizedString("settings_alert_title", comment: ""),
+                                              message: NSLocalizedString("settings_alert_message", comment: ""),
+                                              preferredStyle: .alert)
+
+        settingsAlert.addAction(UIAlertAction(title: NSLocalizedString("settings_alert_action", comment: ""),
+                                              style: .default, handler: { _ in
+            complation()
+        }))
+
+        settingsAlert.addAction(UIAlertAction(title: NSLocalizedString("settings_alert_action_cancel", comment: ""),
+                                              style: .cancel))
+
+        present(settingsAlert, animated: true)
+    }
+    
+    func openSettings() {
+        if let url = URL.init(string: UIApplication.openSettingsURLString) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
+    }
+
 }

@@ -13,6 +13,7 @@
 		A68B30642582B09B004CC6B0 /* RoutingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68B30632582B09B004CC6B0 /* RoutingModel.swift */; };
 		A68B30782582E516004CC6B0 /* WaypointModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68B30772582E516004CC6B0 /* WaypointModel.swift */; };
 		A68B307C2582E548004CC6B0 /* PointEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68B307B2582E548004CC6B0 /* PointEntity.swift */; };
+		A69FA3AF258C00E300D48A6D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A69FA3B1258C00E300D48A6D /* InfoPlist.strings */; };
 		A6D1359025819F7C0036C241 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D1358F25819F7C0036C241 /* AppDelegate.swift */; };
 		A6D1359225819F7C0036C241 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D1359125819F7C0036C241 /* SceneDelegate.swift */; };
 		A6D1359425819F7C0036C241 /* RoutingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D1359325819F7C0036C241 /* RoutingViewController.swift */; };
@@ -36,6 +37,8 @@
 		A68B30632582B09B004CC6B0 /* RoutingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutingModel.swift; sourceTree = "<group>"; };
 		A68B30772582E516004CC6B0 /* WaypointModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaypointModel.swift; sourceTree = "<group>"; };
 		A68B307B2582E548004CC6B0 /* PointEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointEntity.swift; sourceTree = "<group>"; };
+		A69FA3B0258C00E300D48A6D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A69FA3B3258C00E800D48A6D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A6D1358C25819F7C0036C241 /* Route.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Route.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6D1358F25819F7C0036C241 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A6D1359125819F7C0036C241 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -124,6 +127,7 @@
 				A6D1359825819F7E0036C241 /* Assets.xcassets */,
 				A6D1359D25819F7E0036C241 /* Info.plist */,
 				A630AFD42583BA8D00B9CCAE /* Localizable.strings */,
+				A69FA3B1258C00E300D48A6D /* InfoPlist.strings */,
 			);
 			path = "Supported Files";
 			sourceTree = "<group>";
@@ -249,6 +253,7 @@
 				A630AFD22583BA8D00B9CCAE /* Localizable.strings in Resources */,
 				A6D1359925819F7E0036C241 /* Assets.xcassets in Resources */,
 				A6D1359725819F7C0036C241 /* Routing.storyboard in Resources */,
+				A69FA3AF258C00E300D48A6D /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,6 +330,15 @@
 				A630AFDA2583BBE900B9CCAE /* en */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		A69FA3B1258C00E300D48A6D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A69FA3B0258C00E300D48A6D /* en */,
+				A69FA3B3258C00E800D48A6D /* ru */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 		A6D1359525819F7C0036C241 /* Routing.storyboard */ = {

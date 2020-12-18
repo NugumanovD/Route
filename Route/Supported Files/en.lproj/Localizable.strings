@@ -2,7 +2,7 @@
   Localizable.strings
   Route
 
-  Created by Rush LLC on 11.12.2020.
+  Created by Nugumanov Dmitriy on 11.12.2020.
   
 */
 
@@ -16,3 +16,10 @@
 "alert_message_with_promt" = "Do you want to delete the entire route?\n\n If shaking the device can also remove the route";
 
 "alert_action_cancel" = "Cancel";
+
+// Settings Alert Controller
+
+"settings_alert_title" = "Attention";
+"settings_alert_message" = "Turn on your location settings in Route.\n 1. Select Location\n 2. Tap Always or While Using";
+"settings_alert_action" = "Settings";
+"settings_alert_action_cancel" = "Cancel";
