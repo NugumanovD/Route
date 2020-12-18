@@ -87,10 +87,6 @@ private extension RoutingViewController {
         navigationMapView.delegate = navigationMapViewDelegate
         navigationMapView.showsUserLocation = true
         navigationMapView.setUserTrackingMode(.follow, animated: true, completionHandler: nil)
-        let defaultCenter = CLLocationCoordinate2D(latitude: 48.461758, longitude: 35.046613)
-        let camera = MGLMapCamera(lookingAtCenter: defaultCenter, altitude: 10000, pitch: 15, heading: 0)
-         
-        navigationMapView.setCamera(camera, withDuration: 5, animationTimingFunction: CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut))
         
         longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(didLongPress(_ :)))
         navigationMapView.addGestureRecognizer(longPressGesture!)
